@@ -114,7 +114,7 @@ public class StudentControllerTest {
         .then()
             .assertThat()
             .statusCode(200)
-            .body("name", equalTo("santhan"));
+            .body("name", equalTo("Santhan"));
         
     }
     
