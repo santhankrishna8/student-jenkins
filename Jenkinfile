@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                Git 
+                git branch: 'main',
+                    url: 'https://github.com/santhankrishna8/student-jenkins.git'
             }
         }
 
