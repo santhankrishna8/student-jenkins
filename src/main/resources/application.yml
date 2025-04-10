@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: student
+  datasource:
+    url: jdbc:mysql://mysql:3306/newdb
+    username: root123
+    password: root
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect

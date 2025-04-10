@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: newdb
+      MYSQL_USER: root123
+      MYSQL_PASSWORD: root
+    networks:
+      - spring-net
+
+  student-service:
+    build: .
+    container_name: student-service
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/newdb
+      SPRING_DATASOURCE_USERNAME: root123
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+    ports:
+      - "8080:8080"
+    networks:
+      - spring-net
+
+networks:
+  spring-net:
